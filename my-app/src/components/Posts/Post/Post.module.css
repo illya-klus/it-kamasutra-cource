@@ -1,0 +1,79 @@
+.post {
+  position: relative;
+
+  background-color: #f3f2ef;
+  border-radius: 12px;
+
+  padding: 15px;
+
+  max-width: 500px;
+  max-height: 450px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #444;
+}
+
+.username {
+  font-weight: 600;
+  color: #000000;
+  font-size: 1rem;
+}
+
+.post > img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 500px;
+}
+
+.text {
+  color: #474747;
+  font-size: 0.95rem;
+  padding: 0 15px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  padding: 5px 5px 0;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  color: #000000;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.btn:hover {
+  color: #7c7c7c;
+}
+
+.discription{
+  margin-top: 30px ;
+
+}

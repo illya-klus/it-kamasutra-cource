@@ -1,0 +1,21 @@
+.header {
+  grid-area: h;
+  background-color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 30px;
+  border-radius: 10px;
+}
+
+.header img {
+  height: 35px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.header img:hover {
+  transform: scale(1.1);
+}

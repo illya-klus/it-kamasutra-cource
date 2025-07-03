@@ -1,0 +1,24 @@
+.wrapper {
+  margin: 10px auto;
+  max-width: 1200px;
+
+  display: grid;
+  grid-template-areas: 
+    "h h"
+    "n c";
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 2fr 10fr;
+  gap: 10px;
+  min-height: 100vh; 
+}
+
+.app-wrapper-content {
+  padding: 30px;
+
+  border-radius: 10px;
+
+  background-color: #ffffff; 
+}
+
+
+
