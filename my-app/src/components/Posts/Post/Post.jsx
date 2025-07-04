@@ -12,21 +12,19 @@ const Post = (props) => {
             
             <img src={props.postPhoto} alt="" />
 
-            <div className={classes.actions}>
-                <button className={classes.btn}>
-                    ❤️ <span>{props.likes}</span>
-                </button>
-                <button className={classes.btn}>
-                    💬 <span>{props.coments}</span>
-                </button>
-            </div>
-
             <div className={classes.discription}>
                 <span className={classes.username}>{props.name}</span>
                 <span className={classes.text}>{props.description}</span>
             </div>
 
-
+            <div className={classes.actions}>
+                <button className={classes.btn}>
+                    ❤️ <span>{props.likes}</span>
+                </button>
+                <button className={classes.btn}>
+                    💬 <span>{props.comments}</span>
+                </button>
+            </div>
         </div>
     );
 }

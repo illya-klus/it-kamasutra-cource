@@ -1,4 +1,7 @@
 .post {
+  flex: 1 1 200px;   /* росте і стискається, базова ширина 200px */
+  max-width: 500px;  /* не більше 500px */
+  min-width: 200px;  /* не менше 200px */
   position: relative;
 
   background-color: #f3f2ef;
@@ -7,7 +10,7 @@
   padding: 15px;
 
   max-width: 500px;
-  max-height: 450px;
+
 
   margin: 0 auto;
 
@@ -42,6 +45,7 @@
   border-radius: 8px;
   object-fit: cover;
   max-height: 500px;
+  min-width: 500px;
 }
 
 .text {

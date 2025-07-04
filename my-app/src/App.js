@@ -9,7 +9,7 @@ import Dialogs from './components/Dialogs/Dialogs';
 
 
 
-function App() {
+function App(props) {
   return (
     < BrowserRouter>
       <div className='wrapper'>
@@ -17,8 +17,8 @@ function App() {
         <Nav/>
         <div className="app-wrapper-content">
           <Routes>
-              <Route path='/Posts' element={<Posts />} />
-              <Route path='/Dialogs/*' element={<Dialogs />}/>
+              <Route path='/Posts' element={<div><Posts posts = {props.mockPosts}/></div>} />
+              <Route path='/Dialogs/*' element={<Dialogs friends = {props.userFriends}/>}/>
           </Routes>
         </div>
     

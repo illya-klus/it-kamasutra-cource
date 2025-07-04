@@ -9,15 +9,20 @@
   grid-template-rows: 80px 1fr;
   grid-template-columns: 2fr 10fr;
   gap: 10px;
-  min-height: 100vh; 
+  
+  height: 100vh;
+  min-height: 0; /* <-- Додай це */ 
 }
 
 .app-wrapper-content {
+  
   padding: 30px;
 
   border-radius: 10px;
 
   background-color: #ffffff; 
+  overflow-y: auto;
+  height: 100%;
 }
 
 

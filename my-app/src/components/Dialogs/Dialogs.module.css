@@ -6,10 +6,20 @@
 }
 
 .dialog-items {
-
+  flex: 2;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  height: 100%;
 }
-.active {
-    color: brown;
+
+a.activeLink {
+    color: rgb(28, 12, 12);
+    font-weight: 700;
 }
 
 .item {

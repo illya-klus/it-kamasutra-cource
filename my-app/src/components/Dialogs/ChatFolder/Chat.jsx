@@ -4,14 +4,20 @@ import classes from './Chat.module.css';
 
 
 const Messege = (props) => {
-    return(<div className={classes.messege}>{props.text}</div>);
+    return(
+    <div className={classes.Messege}>
+        <div className="nickname">{props.nickname}</div>
+        <div className="text">{props.text}</div>
+    </div>
+    
+    );
 }
 
 
 const Chat = (props) => {
     return(
         <div className={classes.chat}>
-            <Messege text='Hi!' />
+            {props.messeges.map((e) => <Messege nickname={e.nickname} text={e.text}/>)}
         </div>
     );
 }
