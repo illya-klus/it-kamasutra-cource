@@ -1,20 +1,82 @@
-.dialogs{
-    padding: 10px;
-    display: grid;
-    grid-template-columns: 2fr 5fr;
+.dialogs {
+  width: 100%;
+  min-width: 500px;
+
+  display: grid;
+  grid-template-areas: 
+  "friends chat"
+  "friends input";
+
+  grid-template-columns: minmax(120px, 200px) 1fr;
+  grid-template-rows: 1fr 72px;
 
 }
 
+/*чат тобто його врапер */
+.Chat{
+    overflow-x: auto;
+    grid-area: chat;
+}
+
+
+
+/*Поле введення нового сповіщення*/
+.chatForm {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  transition: border-color 0.2s ease;
+}
+.chatInput:focus {
+  border-color: #4a90e2;
+}
+
+.chatButton {
+  margin-left: 10px;
+  padding: 10px 16px;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.chatButton:hover {
+  background-color: #357ab8;
+}
+
+
+/*ліва панель діалогового вікна з усіма друзями*/
 .dialog-items {
-  flex: 2;
+  grid-area: friends;
   padding: 20px;
+
   background-color: #f7f7f7;
   border-right: 1px solid #ddd;
+
   display: flex;
   flex-direction: column;
+
   gap: 10px;
   overflow-y: auto;
-  height: 100%;
 }
 
 a.activeLink {

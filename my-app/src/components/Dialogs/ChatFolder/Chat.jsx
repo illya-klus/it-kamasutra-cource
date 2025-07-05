@@ -5,9 +5,9 @@ import classes from './Chat.module.css';
 
 const Messege = (props) => {
     return(
-    <div className={classes.Messege}>
-        <div className="nickname">{props.nickname}</div>
-        <div className="text">{props.text}</div>
+    <div className={props.className}>
+        <div className={classes.nickname}>{props.nickname}</div>
+        <div className={classes.textMessege}>{props.text}</div>
     </div>
     
     );
@@ -17,7 +17,7 @@ const Messege = (props) => {
 const Chat = (props) => {
     return(
         <div className={classes.chat}>
-            {props.messeges.map((e) => <Messege nickname={e.nickname} text={e.text}/>)}
+            {props.messeges.map((e) => <Messege className={(e.from == "me") ? classes.MyMessege : classes.OtherMessege} nickname={e.from} text={e.text}/>)}
         </div>
     );
 }
