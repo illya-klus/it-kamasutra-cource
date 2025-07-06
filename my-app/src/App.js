@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import Posts from './components/Posts/Posts';
 import Dialogs from './components/Dialogs/Dialogs';
+import AddPostMenu from './components/AddPost/AddPost';
+
 
 
 
@@ -17,8 +19,9 @@ function App(props) {
         <Nav/>
         <div className="app-wrapper-content">
           <Routes>
-              <Route path='/Posts' element={<div><Posts posts = {props.state.mockPosts}/></div>} />
+              <Route path='/Posts' element={<div><Posts addPost = {props.addPost} posts = {props.state.mockPosts}/></div>} />
               <Route path='/Dialogs/*' element={<Dialogs dialogsData = {props.state.dialogsData}/>}/>
+              <Route path='/AddPost' element = {<AddPostMenu State = {props.state} addPost = {props.addPost}/>}/>
           </Routes>
         </div>
     

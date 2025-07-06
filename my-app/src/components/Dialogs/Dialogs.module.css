@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .dialogs {
   width: 100%;
   min-width: 500px;
@@ -10,26 +16,30 @@
   grid-template-columns: minmax(120px, 200px) 1fr;
   grid-template-rows: 1fr 72px;
 
+    height: calc(100vh - 150px);
 }
 
 /*чат тобто його врапер */
 .Chat{
-    overflow-x: auto;
-    grid-area: chat;
+  grid-area: chat;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 
 
 /*Поле введення нового сповіщення*/
 .chatForm {
+  grid-area: input;
+
   display: flex;
   align-items: center;
+
   padding: 12px 20px;
   border-top: 1px solid #ddd;
   background-color: #f9f9f9;
-  position: sticky;
-  bottom: 0;
-  z-index: 5;
+
+  min-height: 0;
 }
 
 .chatInput {
@@ -77,6 +87,8 @@
 
   gap: 10px;
   overflow-y: auto;
+
+  min-height: 0
 }
 
 a.activeLink {

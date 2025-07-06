@@ -1,4 +1,9 @@
 let state = {
+  user:{
+    name: 'Illya',
+    profileImg: 'https://i.pinimg.com/236x/b5/eb/43/b5eb43c9fc0ced8bc3f918864a049350.jpg',
+  },
+
   mockPosts : [
   {
     id: 1,
@@ -78,6 +83,7 @@ let state = {
 }
 
 export let addPost = (id, name, profileImg, postPhoto, description) => {
+  debugger;
   state.mockPosts.push(
     {
       id,
@@ -85,9 +91,12 @@ export let addPost = (id, name, profileImg, postPhoto, description) => {
       profileImg, 
       postPhoto, 
       description,
+      likes: 0,
+      comments: 0,
     }
   );
 }
+
 
 export default state;
 
