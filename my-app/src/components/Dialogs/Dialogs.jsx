@@ -2,6 +2,7 @@ import { NavLink, BrowserRouter, Routes, Route} from 'react-router-dom';
 import classes from './Dialogs.module.css';
 import Chat from './ChatFolder/Chat';
 
+import {updateMessegeText, addNewMessegeActionCreator} from '../../redux/dialogs-reducer'
 
 
 const DialogItem = (props) => {
@@ -12,8 +13,21 @@ const DialogItem = (props) => {
 }
 
 
-
 const Dialogs = (props) => {
+    let changeMessege = (e) =>{
+        let newText = e.target.value;
+        props.dispatch(updateMessegeText(newText));
+    }
+
+    let sentMessege = () => {
+        let text = props.dialogsData.messegeText;
+        if(text === "") return;
+
+        props.dispatch(updateMessegeText(""));
+        props.dispatch(addNewMessegeActionCreator(text));
+        
+    }
+
     return(
         <div className={classes.dialogs}>
             <div className={classes["dialog-items"]}>
@@ -24,14 +38,19 @@ const Dialogs = (props) => {
               <Chat messeges = {props.dialogsData.dialogs.GrishaMessages} />
             </div>
 
-            <form className={classes.chatForm} onSubmit={props.handleSend}>
-                <input
+            <div className={classes.chatForm} >
+                <textarea
+                    onChange={changeMessege}
+                    value={props.dialogsData.messegeText}
                     type="text"
                     placeholder="Введіть повідомлення..."
                     className={classes.chatInput}
                 />
-                <button type="submit" className={classes.chatButton}>Надіслати</button>
-            </form>
+                <button
+                    className={classes.chatButton}
+                    onClick={sentMessege}
+                >Надіслати</button>
+            </div>
             
         </div>
     );

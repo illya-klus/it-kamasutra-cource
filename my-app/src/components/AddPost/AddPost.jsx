@@ -1,6 +1,7 @@
 import classes from './AddPost.module.css';
 import React from 'react';
-import { renderEntireTree } from '../../render'; // обовʼязково імпортуй
+
+import {postChangeActionCreator, imgChangeActionCreator, putPostActionCreator} from '../../redux/posts-reducer'
 
 
 const AddPostMenu = (props) => {
@@ -9,21 +10,31 @@ const AddPostMenu = (props) => {
 
     let putPost = () => {
         debugger;
-        let description = textRef.current.value;
-        let photo = imgRef.current.files[0];
-
-        if(description == undefined) return;
-
-        props.addPost(
-            1, 
-            props.State.user.name,
-            props.State.user.profileImg,
-            photo,
-            description
+        if(props.state.profilePage.newPostText == "") return;
+        
+        props.dispatch( 
+            putPostActionCreator(
+                props.state.user.name,
+                props.state.user.profileImg,
+                props.state.profilePage.newPostImg,
+                props.state.profilePage.newPostText,
+            )
         );
 
-        renderEntireTree(props.State, props.addPost);
+        props.dispatch(postChangeActionCreator(""));
     }
+
+    let onImgChange = () => {
+        let file = imgRef.current.files[0], imageURL;
+        if (file) imageURL = URL.createObjectURL(file);
+        
+        props.dispatch(imgChangeActionCreator(imageURL));
+    };
+
+    let onPostChange = () => {
+        let text = textRef.current.value;
+        props.dispatch(postChangeActionCreator(text));
+    };
 
     return(
         <div className={classes.addPostWrapper}>
@@ -35,15 +46,16 @@ const AddPostMenu = (props) => {
                   type="file"
                   accept="image/*"
                   style={{ display: "none" }}
-                  // onChange поки не юзаємо
+                  onChange={onImgChange}
                 />
             </label>
 
                 <div className={classes.addDiscriptionForm}>
                     <textarea
+                        onChange={onPostChange}
+                        value={props.state.profilePage.newPostText}
                         ref={textRef}
                         placeholder="Введи опис до поста..."
-                        // value і onChange поки не використовуємо
                     />
                 </div>
             <div className={classes.postCurrentPost}>

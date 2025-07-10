@@ -44,8 +44,8 @@
   height: auto;
   border-radius: 8px;
   object-fit: cover;
-  max-height: 500px;
-  min-width: 500px;
+  max-height: 300px;
+  max-width: 500px;
 }
 
 .text {

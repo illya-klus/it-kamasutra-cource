@@ -19,9 +19,9 @@ function App(props) {
         <Nav/>
         <div className="app-wrapper-content">
           <Routes>
-              <Route path='/Posts' element={<div><Posts addPost = {props.addPost} posts = {props.state.mockPosts}/></div>} />
-              <Route path='/Dialogs/*' element={<Dialogs dialogsData = {props.state.dialogsData}/>}/>
-              <Route path='/AddPost' element = {<AddPostMenu State = {props.state} addPost = {props.addPost}/>}/>
+              <Route path='/Posts' element={<div><Posts dispatch = {props.dispatch} posts = {props.state.profilePage}/></div>} />
+              <Route path='/Dialogs/*' element={<Dialogs dispatch = {props.dispatch} dialogsData = {props.state.dialogsData}/>}/>
+              <Route path='/AddPost' element = {<AddPostMenu state = {props.state} dispatch = {props.dispatch}/>}/>
           </Routes>
         </div>
     
