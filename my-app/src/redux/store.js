@@ -3,9 +3,6 @@ import navReducer from "./nav-reducer";
 import postsReducer from "./posts-reducer";
 
 
-
-
-
 let store = {
   _state : {
     user:{
@@ -109,13 +106,9 @@ let store = {
     this._state.dialogsData = dialogsReducer(this._state.dialogsData, action);
     this._state.navBar = navReducer(this._state.navBar, action);
 
-    this._renderEntireTree(this._state);
+    this._renderEntireTree();
   },
 }
-
-
-
-
 
 
 export default store;

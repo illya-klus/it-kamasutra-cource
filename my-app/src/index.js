@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import store from './redux/state'
+import store from './redux/redux-store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let renderEntireTree = (state) => {
+let renderEntireTree = () => {
   root.render(
     <React.StrictMode>
       <App dispatch = {store.dispatch.bind(store)}  state = {store.getState()}/>
