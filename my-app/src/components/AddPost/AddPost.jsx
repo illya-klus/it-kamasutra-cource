@@ -1,8 +1,6 @@
 import classes from './AddPost.module.css';
 import React from 'react';
 
-import {postChangeActionCreator, imgChangeActionCreator, putPostActionCreator} from '../../redux/posts-reducer'
-
 
 const AddPostMenu = (props) => {
     let textRef = React.createRef();
@@ -10,30 +8,26 @@ const AddPostMenu = (props) => {
 
     let putPost = () => {
         debugger;
-        if(props.state.profilePage.newPostText == "") return;
+        if(props.profilePage.newPostText === "") return;
         
-        props.dispatch( 
-            putPostActionCreator(
-                props.state.user.name,
-                props.state.user.profileImg,
-                props.state.profilePage.newPostImg,
-                props.state.profilePage.newPostText,
-            )
+        props.putNewPost(
+            props.user.name,
+            props.user.profileImg,
+            props.profilePage.newPostImg,
+            props.profilePage.newPostText,
         );
-
-        props.dispatch(postChangeActionCreator(""));
     }
 
     let onImgChange = () => {
         let file = imgRef.current.files[0], imageURL;
         if (file) imageURL = URL.createObjectURL(file);
         
-        props.dispatch(imgChangeActionCreator(imageURL));
+        props.changeImj(imageURL);
     };
 
     let onPostChange = () => {
         let text = textRef.current.value;
-        props.dispatch(postChangeActionCreator(text));
+        props.chandeText(text);
     };
 
     return(
@@ -53,7 +47,7 @@ const AddPostMenu = (props) => {
                 <div className={classes.addDiscriptionForm}>
                     <textarea
                         onChange={onPostChange}
-                        value={props.state.profilePage.newPostText}
+                        value={props.profilePage.newPostText}
                         ref={textRef}
                         placeholder="Введи опис до поста..."
                     />

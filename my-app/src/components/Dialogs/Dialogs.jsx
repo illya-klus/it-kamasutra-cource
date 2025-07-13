@@ -1,8 +1,6 @@
-import { NavLink, BrowserRouter, Routes, Route} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import classes from './Dialogs.module.css';
 import Chat from './ChatFolder/Chat';
-
-import {updateMessegeText, addNewMessegeActionCreator} from '../../redux/dialogs-reducer'
 
 
 const DialogItem = (props) => {
@@ -15,17 +13,12 @@ const DialogItem = (props) => {
 
 const Dialogs = (props) => {
     let changeMessege = (e) =>{
-        let newText = e.target.value;
-        props.dispatch(updateMessegeText(newText));
-    }
+        props.updateMessegeText(e.target.value);
+    };
 
     let sentMessege = () => {
-        let text = props.dialogsData.messegeText;
-        if(text === "") return;
-
-        props.dispatch(updateMessegeText(""));
-        props.dispatch(addNewMessegeActionCreator(text));
-        
+        if (props.dialogsData.messegeText === "") return;
+        props.addNewMessege(props.dialogsData.messegeText);
     }
 
     return(

@@ -3,7 +3,7 @@
 let baseState = {};
 
 const navReducer = (state = baseState, action) => {
-    return state;
+    return {...state};
 }
 
 export default navReducer;

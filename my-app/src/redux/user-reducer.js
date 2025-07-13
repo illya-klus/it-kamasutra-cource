@@ -6,7 +6,7 @@ let baseState = {
 
 
 let userReducer = (state = baseState, action) => {
-    return state;
+    return {...state};
 }
 
 export default userReducer;

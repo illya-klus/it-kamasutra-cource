@@ -41,7 +41,6 @@ let baseState = {
 };
 
 
-
 const dialogsReducer = (state = baseState, action) => {
 
     if(action.type == U_ENTER_MESSEGE){
@@ -56,7 +55,7 @@ const dialogsReducer = (state = baseState, action) => {
       );
     }
 
-    return state;
+    return {...state};
 }
 
 

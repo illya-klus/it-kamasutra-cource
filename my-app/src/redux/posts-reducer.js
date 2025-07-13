@@ -65,8 +65,7 @@ const postsReducer = (state = baseState, action) => {
 
     }
     
-    
-    return state;
+    return {...state};
 }
 
 
