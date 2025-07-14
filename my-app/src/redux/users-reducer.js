@@ -7,30 +7,7 @@ const CHANGE_ID = "Change_Id";
 
 let baseState = {
     users:[
-        {
-            id: 1,
-            fullName: "Grisha",
-            location: "Ukraine, Kyiv",
-            discription: "Mein name ist Grisha",
-            isFollowed: false,
-            avatar: "",
-        },
-        {
-            id: 2,
-            fullName: "Illya",
-            location: "Ukraine, Lviv",
-            discription: "I am studying German!",
-            isFollowed: false,
-            avatar: "",
-        },
-        {
-            id: 3,
-            fullName: "Sasha",
-            location: "Ukraine, Rivne",
-            discription: "Surprize mutherfucker!",
-            isFollowed: false,
-            avatar: "",
-        },
+
     ],
     selectedId : -1,
 }
@@ -71,28 +48,24 @@ const UsersReducer = (state = baseState, action) => {
             return state;
     }
 }
-
 export const followAC = (UserId) => {
     return {
         type: FOLLOW,
         UserId: UserId,
     }
 }
-
 export const unfollowAC = (UserId) => {
     return {
         type: UNFOLLOW,
         UserId: UserId,
     }
 }
-
 export const setUsers = (users) => {
     return {
         type: SET_USERS,
         users: users,
     }
 }
-
 export const changeSelectedId = (id) => {
     return {
         type: CHANGE_ID,

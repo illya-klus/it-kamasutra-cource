@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Users from "./Users";
-import { changeSelectedId, followAC, unfollowAC } from "../../redux/users-reducer";
+import { setUsers, changeSelectedId, followAC, unfollowAC } from "../../redux/users-reducer";
 
 
 let mapStateToProps = (state) => {
@@ -14,6 +14,7 @@ let mapDispatchToProps = (dispatch) => {
         follow: (id) => dispatch(followAC(id)) ,
         unfollow: (id) => dispatch(unfollowAC(id)) ,
         selectUser: (id) => dispatch(changeSelectedId(id)),
+        downloadUsers : (users) => dispatch(setUsers(users)),
     }
 }
 
