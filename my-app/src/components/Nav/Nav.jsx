@@ -14,7 +14,7 @@ const Nav = () => {
             </div>
 
             <div className={classes.item} >
-                <NavLink className={({ isActive }) => isActive ? classes.activeLink : ''} to="/News">News</NavLink>
+                <NavLink className={({ isActive }) => isActive ? classes.activeLink : ''} to="/Users">Users</NavLink>
             </div>
 
             <div className={classes.item} >

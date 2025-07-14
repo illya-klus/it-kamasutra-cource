@@ -1,0 +1,99 @@
+/* User.module.css */
+
+.usersWrapper {
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+
+  overflow-y: scroll; /* Prevent body scroll */
+  box-sizing: border-box;
+
+  height: 100vh;
+  min-height: 0; /* <-- Додай це */ 
+}
+
+.users {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
+  padding: 0 16px 32px 16px;
+  height: 100%; /* So it scrolls inside wrapper */
+}
+
+/* USER CARD */
+
+.user {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease;
+  max-height: 200px;
+}
+
+.user:hover {
+  transform: translateY(-1px);
+}
+
+/* IMAGE */
+
+.userImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #eee;
+}
+
+/* TEXT */
+
+.userName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.userDiscription {
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.userContry {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* BUTTON */
+
+.userButton {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s;
+}
+
+.followed {
+  background-color: #e1f5e8;
+  color: #2e7d32;
+}
+
+.unfollowed {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.userButton:hover {
+  opacity: 0.85;
+}

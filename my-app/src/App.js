@@ -7,7 +7,7 @@ import Nav from './components/Nav/Nav';
 import PostsConteiner from './components/Posts/PostsConteiner';
 import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import AddPostConteiner from './components/AddPost/AddPostConteiner';
-
+import UsersConteiner from './components/Users/UserConteiner';
 
 
 
@@ -22,6 +22,7 @@ function App() {
               <Route path='/Posts' element={<PostsConteiner />} />
               <Route path='/Dialogs/*' element={<DialogsConteiner />}/>
               <Route path='/AddPost' element = {<AddPostConteiner/>}/>
+              <Route path='/Users' element = { <UsersConteiner/> }/>
           </Routes>
         </div>
     
