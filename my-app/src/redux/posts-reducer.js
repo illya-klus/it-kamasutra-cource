@@ -46,26 +46,37 @@ let baseState = {
 };
 
 const postsReducer = (state = baseState, action) => {
-    if(action.type == ADD_POST){
-      state.mockPosts.unshift({
-        id : action.id,
-        name : action.name,
-        profileImg : action.profileImg, 
-        postPhoto : action.postPhoto, 
-        description : action.description,
-        likes: 0,
-        comments: 0,
-      });
 
-    } else if(action.type == U_N_POST_TEXT) {
-      state.newPostText = action.newText;
+  if(action.type == ADD_POST){
+    let newPost = {
+      id : action.id,
+      name : action.name,
+      profileImg : action.profileImg, 
+      postPhoto : action.postPhoto, 
+      description : action.description,
+      likes: 0,
+      comments: 0,
+    };
 
-    } else if(action.type == U_N_POST_IMG){
-      state.newPostImg = action.newPostImg;
-
+    return{
+      ...state,
+      mockPosts: [newPost, ...state.mockPosts],
     }
-    
-    return {...state};
+
+  } else if(action.type == U_N_POST_TEXT) {
+    return {
+      ...state,
+      newPostText : action.newText,
+    }
+
+  } else if(action.type == U_N_POST_IMG){
+    return {
+      ...state,
+      newPostImg : action.newPostImg,
+    }
+  }
+
+  return state;
 }
 
 

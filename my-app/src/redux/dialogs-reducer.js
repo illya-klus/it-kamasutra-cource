@@ -43,19 +43,24 @@ let baseState = {
 
 const dialogsReducer = (state = baseState, action) => {
 
-    if(action.type == U_ENTER_MESSEGE){
-      state.messegeText = action.newMessegeText;
-    } else if(action.type == S_N_MESSEGE){
-      let messege = action.text;
-      state.dialogs.GrishaMessages.push(
-        {
-          from: 'me',
-          text: messege,
-        }
-      );
+  if(action.type == U_ENTER_MESSEGE){
+    return {
+      ...state,
+      messegeText : action.newMessegeText,
     }
 
-    return {...state};
+  } else if(action.type == S_N_MESSEGE){
+
+    return{
+      ...state, 
+      dialogs : {
+        ...state.dialogs,
+        GrishaMessages: [...state.dialogs.GrishaMessages, {from: 'me', text: action.text}],
+      },
+    }
+  }
+
+  return {...state};
 }
 
 
