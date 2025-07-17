@@ -6,18 +6,20 @@
   justify-content: center;
 
   overflow-y: scroll; /* Prevent body scroll */
-  box-sizing: border-box;
 
-  height: calc(100vh - 170px);
+
+  max-height: calc(100vh - 200px);
   min-height: 0; /* <-- Додай це */ 
+  min-width: 500px;
 }
 
 .users {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  width: 100%;
+
   max-width: 1000px;
+  min-width: 500px;
   box-sizing: border-box;
   padding: 0 16px 32px 16px;
   height: 100%; /* So it scrolls inside wrapper */
@@ -97,4 +99,31 @@
 
 .userButton:hover {
   opacity: 0.85;
+}
+
+
+
+
+
+
+.getUsersButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.getUsersButton:hover {
+  background-color: #1565c0;
+}
+
+.hidden {
+  display: none;
 }

@@ -41,29 +41,41 @@ let User = (props) => {
 
 
 let Users = (props) => {
-    if(props.users.length === 0){
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => props.downloadUsers(response.data.items));
+
+    let getPosts = () =>{
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users")
+                .then(response => props.downloadUsers(response.data.items));
+        }
+         
     }
 
+
     return (
-        <div className={classes.usersWrapper}>
-            <div className={classes.users}>
-                {props.users.map( el => <User 
-                    name = {el.name} 
-                    discription = {el.discription}
-                    location = {el.location}
-                    isFollowed = {el.isFollowed}
-                    id = {el.id}
-                    smallPhoto = {el.photos.small}
-                    
-                    follow={props.follow}
-                    unfollow={props.unfollow}
-                    selectUser={props.selectUser}
-                />) }
+        <div>
+            <button className={classes.getUsersButton} onClick={getPosts} >Get Users</button>
+
+            <div className={classes.usersWrapper}>
+            
+                <div className={classes.users}>
+                    {props.users.map( el => <User 
+                        name = {el.name} 
+                        discription = {el.discription}
+                        location = {el.location}
+                        isFollowed = {el.isFollowed}
+                        id = {el.id}
+                        smallPhoto = {el.photos.small}
+
+                        follow={props.follow}
+                        unfollow={props.unfollow}
+                        selectUser={props.selectUser}
+                    />) }
+                </div>
+
             </div>
 
         </div>
+        
     );
 }
 

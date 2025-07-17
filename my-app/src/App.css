@@ -1,6 +1,6 @@
 .wrapper {
   margin: 10px auto;
-  max-width: 1200px;
+
 
   display: grid;
   grid-template-areas: 
@@ -17,6 +17,9 @@
 
   background-color: #ffffff; 
   height: 100%;
+
+  max-width: 1200px;
+  min-width: 300px;
 }
 
 
