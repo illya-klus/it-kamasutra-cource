@@ -1,4 +1,36 @@
 /* User.module.css */
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.item {
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.item:hover {
+  background-color: #e8e8e8;
+}
+
+.selectedPage {
+  background-color: #2071c8;
+  color: white;
+  border-color: #7fbafa;
+
+}
+
 
 .usersWrapper {
   padding: 32px;
