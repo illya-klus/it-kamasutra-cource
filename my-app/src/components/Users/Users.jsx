@@ -1,8 +1,6 @@
-import React from 'react';
+import defaultSrc from "../../assets/image/download.png";
 import classes from './User.module.css';
-import axios from 'axios';
 
-import defaultSrc from "../../assets/image/download.png"
 
 
 let User = (props) => {
@@ -38,25 +36,25 @@ let User = (props) => {
     )
 }
 
+const UsersFunc = (props) => {
+    let pagesCount = Math.ceil(props.totalCount / props.pageSize);
+    let pages = [];
 
-
-let Users = (props) => {
-
-    let getPosts = () =>{
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(response => props.downloadUsers(response.data.items));
-        }
-         
-    }
-
+    for(let i = 1; i <= pagesCount; i++) pages.push(i);
+    
 
     return (
         <div>
-            <button className={classes.getUsersButton} onClick={getPosts} >Get Users</button>
+
+            <div className={classes.pages}>
+                {pages.map(el => {
+                    return <span onClick={() => props.getPosts(el)} className={ classes.item + " " + (el === props.selectedPage ? classes.selectedPage : "")  }>{el}</span>
+                })
+                }
+            </div>
 
             <div className={classes.usersWrapper}>
-            
+        
                 <div className={classes.users}>
                     {props.users.map( el => <User 
                         name = {el.name} 
@@ -65,23 +63,17 @@ let Users = (props) => {
                         isFollowed = {el.isFollowed}
                         id = {el.id}
                         smallPhoto = {el.photos.small}
-
+                        
                         follow={props.follow}
                         unfollow={props.unfollow}
                         selectUser={props.selectUser}
                     />) }
                 </div>
-
             </div>
 
         </div>
-        
-    );
+        )
 }
 
 
-export default Users;
-
-
-
-
+export default UsersFunc;
