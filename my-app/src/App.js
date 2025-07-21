@@ -8,7 +8,7 @@ import PostsConteiner from './components/Posts/PostsConteiner';
 import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import AddPostConteiner from './components/AddPost/AddPostConteiner';
 import UsersConteiner from './components/Users/UserConteiner';
-
+import ProfileConteiner from './components/Profile/ProfileConteiner';
 
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
         <Nav/>
         <div className="app-wrapper-content">
           <Routes>
+              <Route path='/Profile/*' element={<ProfileConteiner/>} />
               <Route path='/Posts' element={<PostsConteiner />} />
               <Route path='/Dialogs/*' element={<DialogsConteiner />}/>
               <Route path='/AddPost' element = {<AddPostConteiner/>}/>

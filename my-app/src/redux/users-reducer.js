@@ -4,18 +4,22 @@ const SET_USERS = "Set_Users";
 const CHANGE_ID = "Change_Id";
 const SET_CURRENT_PAGE = "Set-current-Page";
 const SET_USERS_COUNT = "Set-Users-Count";
+const SET_LOAD_FACTOR = "Set-Load-factor";
+
 
 
 
 
 let baseState = {
-    users:[
+    users:[ ],
 
-    ],
     selectedId : -1,
+    
     totalCount : 0,
     pageSize : 20,
     selectedPage : 1,
+
+    isFatching : false,
 }
 
 const UsersReducer = (state = baseState, action) => {
@@ -60,30 +64,35 @@ const UsersReducer = (state = baseState, action) => {
                 ...state, 
                 totalCount : action.count,
             }
+        case SET_LOAD_FACTOR:
+            return{
+                ...state,
+                isFatching : action.value,
+            }
         default:
             return state;
     }
 }
 
-export const followAC = (UserId) => {
+export const follow = (UserId) => {
     return {
         type: FOLLOW,
         UserId: UserId,
     }
 }
-export const unfollowAC = (UserId) => {
+export const unfollow = (UserId) => {
     return {
         type: UNFOLLOW,
         UserId: UserId,
     }
 }
-export const setUsers = (users) => {
+export const downloadUsers = (users) => {
     return {
         type: SET_USERS,
         users: users,
     }
 }
-export const changeSelectedId = (id) => {
+export const selectUser = (id) => {
     return {
         type: CHANGE_ID,
         id: id,
@@ -100,6 +109,12 @@ export const setUsersCount = (count) =>{
     return{
         type: SET_USERS_COUNT,
         count: count,
+    }
+}
+export const setLoader = (value) => {
+    return {
+        type: SET_LOAD_FACTOR,
+        value: value,
     }
 }
 

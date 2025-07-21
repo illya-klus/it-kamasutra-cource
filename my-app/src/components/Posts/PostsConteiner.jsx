@@ -3,7 +3,8 @@ import Posts from './Posts';
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.profilePage,
+        posts: state.profilePage.mockPosts,
+        
     };
 }
 

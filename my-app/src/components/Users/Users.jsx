@@ -1,6 +1,6 @@
 import defaultSrc from "../../assets/image/download.png";
 import classes from './User.module.css';
-
+import { NavLink } from "react-router-dom";
 
 
 let User = (props) => {
@@ -19,7 +19,14 @@ let User = (props) => {
 
     return (
         <div className={classes.user}>
-            <img src={props.smallPhoto != null ? props.smallPhoto : defaultSrc} alt="" className={classes.userImg}/>
+            <NavLink to={'/Profile/' + props.id}>
+                <img 
+                    src={props.smallPhoto != null ? props.smallPhoto : defaultSrc} 
+                    alt="" 
+                    className={classes.userImg}
+                />
+            </NavLink>
+            
             <div className={classes.userName}>
                 {props.name}
             </div>
