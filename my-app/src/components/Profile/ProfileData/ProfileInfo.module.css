@@ -1,0 +1,67 @@
+.profileInfoWrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.profilePhoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userDetails {
+    flex: 1;
+}
+
+.userName {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+}
+
+.description {
+    color: #666;
+    font-size: 16px;
+}
+
+h4{
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.contacts {
+    margin-top: 20px;
+}
+
+.contactList {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.contact {
+    background: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.contact:hover {
+    background-color: #e0e0e0;
+}

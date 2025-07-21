@@ -12,7 +12,7 @@ import { setProfile } from '../../redux/profile-reducer';
 class ProfileConteiner extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${10}`)
         .then(response =>{
             this.props.setProfile(response.data);
         });
@@ -21,15 +21,21 @@ class ProfileConteiner extends React.Component {
     render (){
         return (
             <div>
-                <Profile {...this.props} profilePage = {this.props.profilePage}/>
+                <Profile userProfilePage = {this.props.userProfilePage}/>
             </div>
         )
     }
 }
 
+
+
+
+
+
+
 let mapSatateToProps = (state) => {
     return {
-        profilePage : state.profilePage,
+        userProfilePage : state.userProfilePage,
     } 
 }
 

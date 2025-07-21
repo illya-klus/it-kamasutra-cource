@@ -58,17 +58,6 @@ let mapStateToProps = (state) => {
         isFatching : state.usersPage.isFatching,
     }
 } 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (id) => dispatch(followAC(id)) ,
-//         unfollow: (id) => dispatch(unfollowAC(id)) ,
-//         selectUser: (id) => dispatch(changeSelectedId(id)),
-//         downloadUsers : (users) => dispatch(setUsers(users)),
-//         changeSelectedPage: (page) => dispatch(changeSelectedPage(page)),
-//         setUsersCount: (count) => dispatch(setUsersCount(count)),
-//         setLoader : (value) => dispatch(setLoader(value)),
-//     }
-// }
 
 
 

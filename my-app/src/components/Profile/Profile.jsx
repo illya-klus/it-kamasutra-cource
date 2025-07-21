@@ -8,7 +8,7 @@ import UserPostsConteiner from './ProfileData/UserPostsConteiner';
 let Profile = (props) => {
     return (
         <div>
-            <ProfileInfo profilePage = {props.profilePage} /> 
+            <ProfileInfo userProfilePage = {props.userProfilePage} /> 
             <UserPostsConteiner />
         </div>
         

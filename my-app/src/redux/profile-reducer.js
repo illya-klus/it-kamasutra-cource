@@ -1,6 +1,8 @@
 const SET_USER_PROFILE_DATA = "Set-User-Profile-Data";
 
 let baseState = {
+    aboutMe: "Nothing...",
+
     userId: -1,
     fullName: "No name",
 
@@ -8,19 +10,19 @@ let baseState = {
     lookingForAJobDescription: "Нічого не вказано.",
 
     contacts : [],
-    photos: {
-        small: null,
-        large: null,
-    }
+    photos: {},
 }
 
 
 const ProfileReducer = (state = baseState, action) => {
     switch (action.type) {
         case SET_USER_PROFILE_DATA:
+            console.log(action.data);
             return {
+                aboutMe: action.data.aboutMe,
+
                 userId: action.data.userId,
-                fullName: "No name",
+                fullName: action.data.fullName,
                 
                 lookingForAJob: action.data.lookingForAJob,
                 lookingForAJobDescription: action.data.lookingForAJobDescription,
@@ -41,6 +43,7 @@ export const setProfile = (data) => {
         data,
     }
 }
+
 
 
 

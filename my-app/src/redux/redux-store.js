@@ -14,7 +14,7 @@ let reducers = combineReducers({
     navBar : navReducer,
     profilePage : postsReducer,
     usersPage: UsersReducer,
-    userProfilePage:ProfileReducer,
+    userProfilePage : ProfileReducer,
 });
 
 let store = createStore(reducers);
