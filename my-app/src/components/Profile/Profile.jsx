@@ -1,4 +1,4 @@
-import classes from './Profile.module.css';
+
 
 import ProfileInfo from './ProfileData/ProfileInfo';
 import UserPostsConteiner from './ProfileData/UserPostsConteiner';

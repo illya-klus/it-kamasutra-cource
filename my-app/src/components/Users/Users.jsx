@@ -2,6 +2,8 @@ import defaultSrc from "../../assets/image/download.png";
 import classes from './User.module.css';
 import { NavLink } from "react-router-dom";
 
+import axios from 'axios';
+
 
 let User = (props) => {
 
@@ -9,9 +11,32 @@ let User = (props) => {
         props.selectUser(props.id);
 
         if(props.isFollowed){
-            props.unfollow(props.id);
+            axios
+            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {
+                withCredentials: true,
+                headers:{
+                    "API-KEY" : "f1070a54-2397-45a2-b159-9e94d5daadff"
+                }
+            })
+            .then(response => {
+                if(response.data.resultCode === 0){
+                    props.unfollow(props.id);
+                }
+            }).catch(err => alert("На жаль зараз сервер не працює, спробуйте пізніше."))
         } else{
-            props.follow(props.id);
+            axios
+            .post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {}, {
+                withCredentials: true,
+                headers:{
+                    "API-KEY" : "f1070a54-2397-45a2-b159-9e94d5daadff"
+                }
+            })
+            .then(response => {
+                if(response.data.resultCode === 0){
+                    props.follow(props.id);
+                }
+            }).catch(err => alert("На жаль зараз сервер не працює, спробуйте пізніше."))
+            
         }
             
         props.selectUser(-1);

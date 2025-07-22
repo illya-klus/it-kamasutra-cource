@@ -1,5 +1,5 @@
 import classes from './ProfileInfo.module.css'
-
+import baseImg from '../../../assets/image/download.png';
 
 
 let ProfileInfo = (props) => {
@@ -13,7 +13,7 @@ let ProfileInfo = (props) => {
         <div className = {classes.profileInfoWrapper}>
             <img 
                 className = {classes.profilePhoto} 
-                src={props.userProfilePage.photos.large} 
+                src={props.userProfilePage.photos.large ? props.userProfilePage.photos.large : baseImg} 
                 alt=""
             />
             <div className={classes.userName}>
