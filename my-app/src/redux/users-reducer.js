@@ -1,3 +1,7 @@
+import { UserAPI } from "../API/api";
+
+
+
 const FOLLOW = "Follow-User";
 const UNFOLLOW = "Unfollow_User";
 const SET_USERS = "Set_Users";
@@ -5,6 +9,7 @@ const CHANGE_ID = "Change_Id";
 const SET_CURRENT_PAGE = "Set-current-Page";
 const SET_USERS_COUNT = "Set-Users-Count";
 const SET_LOAD_FACTOR = "Set-Load-factor";
+const SET_LOAD_FOLLOW = "Set-Load-follow";
 
 
 
@@ -20,6 +25,7 @@ let baseState = {
     selectedPage : 1,
 
     isFatching : false,
+    followingInProgress: [],
 }
 
 const UsersReducer = (state = baseState, action) => {
@@ -69,6 +75,13 @@ const UsersReducer = (state = baseState, action) => {
                 ...state,
                 isFatching : action.value,
             }
+        case SET_LOAD_FOLLOW: 
+            return {
+                ...state,
+                followingInProgress: action.following
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state;
     }
@@ -117,8 +130,56 @@ export const setLoader = (value) => {
         value: value,
     }
 }
+export const following = (userId, following) => {
+    return {
+        type: SET_LOAD_FOLLOW,
+        userId,
+        following,
+    }
+}
 
+export const getUsersThunkCreator = (page, pageSize) => {
+    return (dispatch) => {
+        dispatch(setLoader(true));
+        dispatch(changeSelectedPage(page));
 
+        UserAPI.getUsers(page, pageSize)
+            .then(response => {
+                dispatch(downloadUsers(response.items));
+                dispatch(setUsersCount(response.totalCount));
+                return response;
+            })
+            .then( () => dispatch(setLoader(false)) );
+    }
+}
+export const followThunkCreator = (id) => {
+    return (dispatch) => {
+        UserAPI.followUser(id)
+        .then(response => {
+            if(response.resultCode === 0){
+                dispatch(follow(id));
+            }
+            dispatch(following(id, false));
+        }).catch(() => {
+            alert("Сервер не працює");
+            dispatch(following(id, false)); 
+        });
+    }
+}
+export const unfollowThunkCreator = (id) => {
+    return (dispatch) => {
+        UserAPI.unfollowUser(id)
+        .then(response => {
+            if(response.resultCode === 0){
+                dispatch(unfollow(id));
+            }
+            dispatch(following(id, false));
+        }).catch(() => {
+            alert("Сервер не працює");
+            dispatch(following(id, false)); 
+        });
+    }
+}
 
 export default UsersReducer;
 

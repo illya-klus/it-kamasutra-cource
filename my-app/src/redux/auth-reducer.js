@@ -1,3 +1,5 @@
+import { UserAPI } from "../API/api";
+
 const SET_USER_DATA = "set-user-data";
 
 
@@ -39,6 +41,19 @@ export const setUserData = (userId, emeil, login) => {
     }
 }
 
+
+export const authThunk = () => {
+    return (dispatch) => {
+        UserAPI
+        .authUser()
+        .then(response =>{
+            if(response.resultCode === 0){
+                let {login, id, email} = response.data;
+                dispatch(setUserData(id, email, login));
+            }
+        });
+    }
+}
 
 
 

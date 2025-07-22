@@ -2,45 +2,22 @@ import defaultSrc from "../../assets/image/download.png";
 import classes from './User.module.css';
 import { NavLink } from "react-router-dom";
 
-import axios from 'axios';
+
 
 
 let User = (props) => {
 
-    let onClick = () =>{
-        props.selectUser(props.id);
+    let onClick = () => {
 
-        if(props.isFollowed){
-            axios
-            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {
-                withCredentials: true,
-                headers:{
-                    "API-KEY" : "f1070a54-2397-45a2-b159-9e94d5daadff"
-                }
-            })
-            .then(response => {
-                if(response.data.resultCode === 0){
-                    props.unfollow(props.id);
-                }
-            }).catch(err => alert("На жаль зараз сервер не працює, спробуйте пізніше."))
-        } else{
-            axios
-            .post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {}, {
-                withCredentials: true,
-                headers:{
-                    "API-KEY" : "f1070a54-2397-45a2-b159-9e94d5daadff"
-                }
-            })
-            .then(response => {
-                if(response.data.resultCode === 0){
-                    props.follow(props.id);
-                }
-            }).catch(err => alert("На жаль зараз сервер не працює, спробуйте пізніше."))
-            
-        }
-            
-        props.selectUser(-1);
+    props.selectUser(props.id);
+    props.following(props.id, true); // додаємо в масив
+
+    if(props.isFollowed){
+        props.unfollow(props.id);
+    } else {
+        props.follow(props.id);
     }
+}
 
     return (
         <div className={classes.user}>
@@ -61,20 +38,19 @@ let User = (props) => {
             <div className={classes.userContry}>
                 {"props.location"}
             </div>
-            <button onClick={onClick} className={ classes.userButton + " " + (props.isFollowed ? classes.followed : classes.unfollowed) }>
+            <button disabled= {props.followingInProgress.includes(props.id)} onClick={onClick} className={ classes.userButton + " " + (props.isFollowed ? classes.followed : classes.unfollowed) }>
                 {props.isFollowed ? "Followed" : "Follow"}
             </button>
         </div>
     )
 }
 
-const UsersFunc = (props) => {
+const Users = (props) => {
     let pagesCount = Math.ceil(props.totalCount / props.pageSize);
     let pages = [];
 
     for(let i = 1; i <= pagesCount; i++) pages.push(i);
     
-
     return (
         <div>
 
@@ -95,9 +71,11 @@ const UsersFunc = (props) => {
                         isFollowed = {el.isFollowed}
                         id = {el.id}
                         smallPhoto = {el.photos.small}
+                        followingInProgress = {props.followingInProgress}
                         
-                        follow={props.follow}
-                        unfollow={props.unfollow}
+                        following = {props.following }
+                        follow = {props.followThunkCreator}
+                        unfollow = {props.unfollowThunkCreator}
                         selectUser={props.selectUser}
                     />) }
                 </div>
@@ -108,4 +86,4 @@ const UsersFunc = (props) => {
 }
 
 
-export default UsersFunc;
+export default Users;

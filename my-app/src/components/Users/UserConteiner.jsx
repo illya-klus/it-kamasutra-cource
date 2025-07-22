@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
-import { setLoader, setUsersCount, changeSelectedPage, downloadUsers, selectUser, unfollow, follow } from "../../redux/users-reducer";
+import { followThunkCreator, unfollowThunkCreator, selectUser, unfollow, follow, following, getUsersThunkCreator } from "../../redux/users-reducer";
 
 import React from 'react';
-import axios from 'axios';
 import Users from './Users'; 
 
 import Preloader from '../common/Preloader'
@@ -10,7 +9,8 @@ import Preloader from '../common/Preloader'
 
 class UsersAPI extends React.Component {
 
-    render = () => {        
+    render = () => {   
+            
         return <>
             {this.props.isFatching ? <Preloader/> : null}
             <Users 
@@ -18,32 +18,23 @@ class UsersAPI extends React.Component {
                 pageSize = {this.props.pageSize} 
                 selectedPage = {this.props.selectedPage} 
                 users = {this.props.users}
+                followingInProgress = {this.props.followingInProgress}
 
+                following = {this.props.following}
+                unfollowThunkCreator = {this.props.unfollowThunkCreator}
+                followThunkCreator = {this.props.followThunkCreator}
                 getPosts = {this.getPosts}
-                follow ={this.props.follow}
-                unfollow = {this.props.unfollow}
                 selectUser = {this.props.selectUser}
             />
         </>;  
     }
 
     getPosts = (page) => {
-        this.props.setLoader(true);
-        this.props.changeSelectedPage(page);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-            .then(response => this.props.downloadUsers(response.data.items))
-            .then(this.props.setLoader(false));
+        this.props.getUsers(page, this.props.pageSize);
     }
 
     componentDidMount() {
-        this.props.setLoader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.downloadUsers(response.data.items);
-                return response;
-            })
-            .then(response => this.props.setUsersCount(response.data.totalCount))
-            .then(this.props.setLoader(false));
+        this.props.getUsers(this.props.selectedPage, this.props.pageSize);
     }
 }
 
@@ -56,19 +47,18 @@ let mapStateToProps = (state) => {
         totalCount : state.usersPage.totalCount,
         selectedPage: state.usersPage.selectedPage,
         isFatching : state.usersPage.isFatching,
+        followingInProgress : state.usersPage.followingInProgress,
     }
 } 
 
 
 
 const UsersConteiner = connect(mapStateToProps, {
-    follow,
-    unfollow,
     selectUser,
-    downloadUsers,
-    changeSelectedPage:changeSelectedPage,
-    setUsersCount: setUsersCount,
-    setLoader : setLoader,
+    following,
+    getUsers : getUsersThunkCreator,
+    unfollowThunkCreator,
+    followThunkCreator
 })(UsersAPI);
 
 

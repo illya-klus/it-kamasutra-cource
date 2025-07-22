@@ -1,3 +1,5 @@
+import { UserAPI } from "../API/api";
+
 const SET_USER_PROFILE_DATA = "Set-User-Profile-Data";
 
 let baseState = {
@@ -44,7 +46,15 @@ export const setProfile = (data) => {
     }
 }
 
-
+export const giveProfile = (userId) =>{
+    return (dispatch) => {        
+        UserAPI
+        .giveProfile(userId)
+        .then(response =>{
+            dispatch(setProfile(response));
+        });
+    }
+}
 
 
 
