@@ -9,6 +9,8 @@ import DialogsConteiner from './components/Dialogs/DialogsConteiner';
 import AddPostConteiner from './components/AddPost/AddPostConteiner';
 import UsersConteiner from './components/Users/UserConteiner';
 import ProfileContainer from './components/Profile/ProfileConteiner';
+import Login from './components/Login/login';
+import MyProfileInfo from './components/MyProfile/MyProfileInfo/MyProfileInfo';
 
 
 
@@ -26,6 +28,8 @@ function App() {
               <Route path='/Dialogs/*' element={<DialogsConteiner />}/>
               <Route path='/AddPost' element = {<AddPostConteiner/>}/>
               <Route path='/Users' element = { <UsersConteiner/> }/>
+              <Route path='/Login' element = { <Login/> }/>
+              <Route path='/MyProfile' element={<MyProfileInfo/>}/>
           </Routes>
         </div>
     

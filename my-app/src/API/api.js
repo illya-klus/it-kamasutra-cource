@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { profileAPI } from "./profileAPI";
 
 
 const instance = axios.create({
@@ -38,11 +38,11 @@ export const UserAPI = {
     },
 
     giveProfile(userId){
-        return instance
-            .get(`/profile/${userId}`)
-            .then(response => response.data);
+        console.warn("You use the obsolete methon. Please use ProfileAPI object for working with profiles.");
+        return profileAPI.giveProfile(userId);
     },
 }
+
 
 
 

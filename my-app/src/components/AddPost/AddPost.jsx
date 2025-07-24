@@ -7,7 +7,6 @@ const AddPostMenu = (props) => {
     let imgRef = React.createRef();
 
     let putPost = () => {
-        debugger;
         if(props.profilePage.newPostText === "") return;
         
         props.putNewPost(

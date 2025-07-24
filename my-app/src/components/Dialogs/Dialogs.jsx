@@ -1,4 +1,4 @@
-import { NavLink} from 'react-router-dom';
+import { NavLink, Navigate} from 'react-router-dom';
 import classes from './Dialogs.module.css';
 import Chat from './ChatFolder/Chat';
 
@@ -51,7 +51,6 @@ const Dialogs = (props) => {
 
 
 export default Dialogs;
-
 
 
 

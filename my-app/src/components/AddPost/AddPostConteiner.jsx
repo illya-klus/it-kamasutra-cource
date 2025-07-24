@@ -2,6 +2,7 @@ import AddPostMenu from "./AddPost";
 
 import {postChangeActionCreator, imgChangeActionCreator, putPostActionCreator} from '../../redux/posts-reducer'
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../../Hoc/AuthRedirect";
 
 
 let mapStateToProps = (state) => {
@@ -26,8 +27,8 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
+let withAuth = withAuthRedirect(AddPostMenu);
 
-
-const DialogsConteiner = connect(mapStateToProps,  mapDispatchToProps)(AddPostMenu);
+const DialogsConteiner = connect(mapStateToProps,  mapDispatchToProps)(withAuth);
 
 export default DialogsConteiner;
