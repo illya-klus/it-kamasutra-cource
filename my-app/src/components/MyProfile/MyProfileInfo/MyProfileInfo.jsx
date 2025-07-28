@@ -2,103 +2,91 @@ import baseImg from '../../../assets/image/download.png';
 import classes from '../../Profile/ProfileData/ProfileInfo.module.css';
 
 import { connect } from 'react-redux';
-import React from 'react';
-import { updateStatus, updateStatusThunkCreator } from '../../../redux/myProfile-reducer';
+import React, { useEffect, useState } from 'react';
+import { updateStatusThunkCreator } from '../../../redux/myProfile-reducer';
 
 
-class MyProfileInfo extends React.Component  {
+const MyProfileInfoWithHooks = (props) => {
     
-    state = {
-        isChange : false,
-        status : this.props.userProfilePage.status,
-    }
+    let [isChanged, setIsChanged] = useState(false);
+    let [status, setStatus] = useState(props.userProfilePage.status);
+
+    useEffect( () => setStatus(props.userProfilePage.status), [props.status] );
+
     
-    onChange () {
-        this.setState({
-            isChange: true,
-        })
+    let onChange = () => {
+        setIsChanged(true);
     }
 
-    onDisableChange () {
-        this.setState({
-            isChange: false,
-        });
-        this.props.updateStatusThunkCreator(this.state.status)
-
+    let onDisableChange = () => {
+        setIsChanged(false);
+        updateStatusThunkCreator(status);
     }
 
-    onInputChange (e) {
-        this.setState({status : e.currentTarget.value});
+    let onInputChange = (e) => {
+        setStatus(e.currentTarget.value);
     }
 
 
-    componentDidUpdate(prevProps, prevState) {
-        if(prevProps.status !== this.status){
-            this.setState({state : this.status });
-        }
-    }
-
-    render(){
-        let el = 
-        this.props.userProfilePage.lookingForAJob ? 
-            this.props.userProfilePage.lookingForAJobDescription :
+    let el = 
+        props.userProfilePage.lookingForAJob ? 
+            props.userProfilePage.lookingForAJobDescription :
             "No description yet.";
 
-        let contactsObj = this.props.userProfilePage.contacts;
-    
-        return (
-            <div className = {classes.profileInfoWrapper}>
-                <img 
-                    className = {classes.profilePhoto} 
-                    src={this.props.userProfilePage.photos.large ? this.props.userProfilePage.photos.large : baseImg} 
-                    alt=""
-                />
-                <div className={classes.userName}>
-                    {this.props.userProfilePage.fullName}
-                </div>
-                
+    let contactsObj = props.userProfilePage.contacts;
 
-                <div className={classes.description}>
-                    {
-                        this.state.isChange ? 
-                            <div onBlur={this.onDisableChange.bind(this)}>
-                                <input
-                                    onChange={this.onInputChange.bind(this)}
-                                    autoFocus = {true} 
-                                    type="text"
-                                    value={this.state.status}
-                                    className={classes.InputDescription}
-                                />
-                            </div>
-                            :
-                            <div onDoubleClick={this.onChange.bind(this)} >
-                                {this.props.userProfilePage.status}
-                            </div>
-                    }
-                    
-                    <h4>About Work</h4>
-                    <div className={classes.descriptionText}>
-                        {el}
-                    </div>
-                </div>
-    
-                <div className={classes.contactList}>
-                    {Object.keys(contactsObj).map( key => {
-                        if(contactsObj[key] != null){
-                            return <a 
-                                href = {`https://${contactsObj[key]}`} 
-                                className={classes.contact}
-                                target="_blank"
-                            > 
-                            {key}
-                            </a>
-                        }
-                    } )}
-                </div>
-    
+    return (
+        <div className = {classes.profileInfoWrapper}>
+            <img 
+                className = {classes.profilePhoto} 
+                src={props.userProfilePage.photos.large ? props.userProfilePage.photos.large : baseImg} 
+                alt=""
+            />
+            <div className={classes.userName}>
+                {props.userProfilePage.fullName}
             </div>
-        );
-    }
+            
+            <div className={classes.description}>
+                {
+                    isChanged ? 
+                        <div onBlur={onDisableChange}>
+                            <input
+                                onChange={onInputChange}
+                                autoFocus = {true} 
+                                type="text"
+                                value={status}
+                                className={classes.InputDescription}
+                            />
+                        </div>
+                        :
+                        <div onDoubleClick={onChange} >
+                            {props.userProfilePage.status}
+                        </div>
+                }
+                
+                <h4>About Work</h4>
+                <div className={classes.descriptionText}>
+                    {el}
+                </div>
+            </div>
+
+            <div className={classes.contactList}>
+                {Object.keys(contactsObj).map( key => {
+                    if(contactsObj[key] != null){
+                        return <a 
+                            href = {`https://${contactsObj[key]}`} 
+                            className={classes.contact}
+                            target="_blank"
+                        > 
+                        {key}
+                        </a>
+                    }
+                } )}
+            </div>
+
+        </div>
+    );
+
     
 }
 
@@ -110,7 +98,7 @@ let mapStateToProps = (state) =>{
 }
 
 
-let MyProfileConteiner = connect(mapStateToProps, {updateStatus, updateStatusThunkCreator})(MyProfileInfo);
+let MyProfileConteiner = connect(mapStateToProps, {updateStatusThunkCreator})(MyProfileInfoWithHooks);
 
 export default MyProfileConteiner;
 

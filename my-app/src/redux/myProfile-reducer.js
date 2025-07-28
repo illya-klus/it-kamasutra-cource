@@ -65,7 +65,7 @@ export const updateStatus = (status) => {
 }
 
 export const updateStatusThunkCreator = (status) => {
-    return(dispatch) => {
+    return (dispatch) => {
         profileAPI
             .updateStatus(status)
             .then(response => {if(response.code === 0) dispatch(status) });

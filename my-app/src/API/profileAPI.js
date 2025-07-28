@@ -22,7 +22,9 @@ export const profileAPI = {
     updateStatus(status){
         return instance
             .put(`/profile/status`, {status : status})
-            .catch(err => alert("Sorry, thats kinda idiots on backend :( \nTry later!"))
-            .then(response => ({code: 1}));
+            .catch(err => {
+                alert("Sorry, thats kinda idiots on backend :( \nTry later!");
+                return {code : 1};
+            });
     }
 }
