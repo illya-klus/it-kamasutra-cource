@@ -46,37 +46,37 @@ let baseState = {
 };
 
 const postsReducer = (state = baseState, action) => {
+  switch (action.type){
+    case ADD_POST:
+      let newPost = {
+        id : action.id,
+        name : action.name,
+        profileImg : action.profileImg, 
+        postPhoto : action.postPhoto, 
+        description : action.description,
+        likes: 0,
+        comments: 0,
+      };
+      return {
+        ...state,
+        mockPosts : [newPost, ...state.mockPosts]
+      }
 
-  if(action.type == ADD_POST){
-    let newPost = {
-      id : action.id,
-      name : action.name,
-      profileImg : action.profileImg, 
-      postPhoto : action.postPhoto, 
-      description : action.description,
-      likes: 0,
-      comments: 0,
-    };
+    case U_N_POST_TEXT: 
+      return {
+        ...state,
+        newPostText : action.newText,
+      }
 
-    return{
-      ...state,
-      mockPosts: [newPost, ...state.mockPosts],
-    }
+    case U_N_POST_IMG : 
+      return {
+        ...state,
+        newPostImg : action.newPostImg,
+      }
 
-  } else if(action.type == U_N_POST_TEXT) {
-    return {
-      ...state,
-      newPostText : action.newText,
-    }
-
-  } else if(action.type == U_N_POST_IMG){
-    return {
-      ...state,
-      newPostImg : action.newPostImg,
-    }
+    default:
+      return state;
   }
-
-  return state;
 }
 
 
