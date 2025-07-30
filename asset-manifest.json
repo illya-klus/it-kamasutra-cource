@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/it-kamasutra-cource/static/css/main.4a7b014a.css",
-    "main.js": "/it-kamasutra-cource/static/js/main.29ab1f09.js",
+    "main.js": "/it-kamasutra-cource/static/js/main.8c1e7155.js",
     "static/js/453.96453769.chunk.js": "/it-kamasutra-cource/static/js/453.96453769.chunk.js",
     "static/media/Spinner@1x-1.0s-199px-199px.svg": "/it-kamasutra-cource/static/media/Spinner@1x-1.0s-199px-199px.36770748d44f6ab49c8578e6b30acc26.svg",
     "index.html": "/it-kamasutra-cource/index.html",
     "main.4a7b014a.css.map": "/it-kamasutra-cource/static/css/main.4a7b014a.css.map",
-    "main.29ab1f09.js.map": "/it-kamasutra-cource/static/js/main.29ab1f09.js.map",
+    "main.8c1e7155.js.map": "/it-kamasutra-cource/static/js/main.8c1e7155.js.map",
     "453.96453769.chunk.js.map": "/it-kamasutra-cource/static/js/453.96453769.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4a7b014a.css",
-    "static/js/main.29ab1f09.js"
+    "static/js/main.8c1e7155.js"
   ]
 }
